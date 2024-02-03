@@ -1,7 +1,16 @@
+* {
+    padding:0;
+    margin:0;
+    vertical-align:baseline;
+    list-style:none;
+    border:0
+}
+
 body {
     margin: 1rem auto;
     padding: 3rem;
     font-family: sans-serif;
+    background-color: #3c3c3c;
 }
 header {
     width: 50%;
@@ -14,10 +23,29 @@ main {
     display:flex; 
     flex-direction: column;
 }
+
+button {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: medium;
+    background-color: #535353;
+    border: solid 2px white;
+    border-radius: 5px;
+    color: white;
+}
+
+h1 {
+    color: #CCCCCC;
+}
+
+p {
+    color: #b6b6b6;
+}
+
 #statement {
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 0.5rem;
-    box-shadow: 5px 5px 5px gray;
+    box-shadow: 5px 5px 5px #C3C3C3;
     padding: 1rem;
     font-size: x-large;
     text-align: center;
@@ -33,11 +61,7 @@ main {
     display: flex;
     flex-direction: column;
 }
-button {
-    padding: 0.5rem;
-    font-size: medium;
-    border-radius: 5px;
-}
+
 .correct {
     background-color: lightgreen;
 }
