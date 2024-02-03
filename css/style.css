@@ -29,8 +29,9 @@ button {
     margin-bottom: 0.5rem;
     font-size: medium;
     background-color: #535353;
-    border: solid 2px white;
+    border: 0;
     border-radius: 5px;
+    box-shadow: 0px 0px 4px #FFFFFF;
     color: white;
 }
 
@@ -51,6 +52,7 @@ p {
     text-align: center;
     margin: 1rem 0px;
     min-height: 2em;
+    color: #FFFFFF;
 }
 #explanation {
     padding: 1rem;
