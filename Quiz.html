@@ -14,38 +14,75 @@
     </header>
 
     <main>
-    <div id="statement">
-        
-    </div>
 
-    <div id="options">
-        <button name="true" value="true">true</button>
-        <button name="false" value="false">false</button>
-    </div>
+      <div id="score">
 
-    <div id="explanation">
+      </div>
 
-    </div>
+      <div id="statement">
+          
+      </div>
+
+      <div id="options">
+          <button name="true" value="true">true</button>
+          <button name="false" value="false">false</button>
+      </div>
+
+      <div id="explanation">
+
+      </div>
+
+      <div id="nextQuestion">
+        <button name="nextQuestion">Next Question</button>
+      </div>
 
     </main>
 
   
 
   <script type="text/javascript">
+
+    const score = document.getElementById("score");
     
     const statement = document.getElementById("statement");
     
-    const optionButtons = document.querySelectorAll("#options button")
+    const optionButtons = document.querySelectorAll("#options button");
     
     const explanation = document.getElementById("explanation");
 
-    const fact = {
-      statement: "Bears eat beets.",
-      answer: "false",
-      explanation: "Bears... Beets... Battlestar Galactica."
-    }
+    const nextQuestion = document.querySelectorAll("#nextQuestion button");
 
-    statement.textContent = fact.statement;
+    const facts = [
+      {
+        statement: "Bears eat beets.",
+        answer: "false",
+        explanation: "Bears... Beets... Battlestar Galactica."
+      },
+      {
+        statement: "White bear is the best kind of bear.",
+        answer: "false",
+        explanation: "False. Black bear."
+      },
+      {
+      statement: "For Jim to recreate Dwight's costume costs only 10 dollars.",
+      answer: "false",
+      explanation: "11 dollars."
+      },
+      {
+      statement: "Jim is not asian.",
+      answer: "true",
+      explanation: "His actor friend is."
+      },
+      {
+      statement: "Is it truth that Michael singed 'So long Toby' for Toby when he went to Costa Rica?",
+      answer: "false",
+      explanation: "It was 'Good bye, Toby'"
+      }
+    ]
+    
+    let factsIndex = 0;
+
+    let points = 0;
         
     const disable = (button) => {
       button.setAttribute("disabled", "");
@@ -54,13 +91,32 @@
     const enable = (button) => button.removeAttribute("disabled");
 
     function isCorrect (guess) {
-      return guess === fact.answer;
+      return guess === facts[factsIndex].answer;
+    }
+    
+    function toTheNextQuestion (factsIndex) {
+      if (factsIndex <= facts.length){
+        return factsIndex++;
+      } else {
+        return document.textContent = "No more questions!"
+      }
+    }
+    
+    score.textContent = "Score: " + points + "/" + factsIndex;
+
+    statement.textContent = facts[factsIndex].statement;
+    
+    for (let button of nextQuestion) {
+      button.addEventListener("click", (event) => {
+        factsIndex++;
+        console.log(factsIndex);
+      })
     }
 
     for (let button of optionButtons) {
       button.addEventListener("click", (event) => {
         
-        explanation.textContent = fact.explanation;
+        explanation.textContent = facts[factsIndex].explanation;
         
         for (let disableButton of optionButtons) {
           disable(disableButton);
@@ -68,6 +124,8 @@
         
         if (isCorrect(event.target.value)) {
           button.classList.add("correct");
+          points++;
+          console.log(points);
         } else {
           button.classList.add("incorrect");
         }

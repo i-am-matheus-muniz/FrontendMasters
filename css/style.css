@@ -50,6 +50,11 @@ p {
     color: #b6b6b6;
 }
 
+#score {
+    padding: 2rem;
+    text-align: center;
+}
+
 #statement {
     border: 1px solid white;
     border-radius: 0.5rem;
@@ -70,6 +75,13 @@ p {
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+#nextQuestion {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .correct {
