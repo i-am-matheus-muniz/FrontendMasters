@@ -11,7 +11,7 @@ Enjoy!!
 
 <h3 align="center">Technologies used</h3>
 <ul>
-    <li>![html5-icon](images/html5-icon-2.png)</li>
+    <li>![html5-icon](https://github.com/i-am-matheus-muniz/The-Office-Quiz.js/blob/main/images/html5-icon-2.png)</li>
     <li>![css3-icon](images/css3-icon-2.png)</li>
     <li>![JS-icon](images/JS-icon.png)</li>
 </ul>
