@@ -4,138 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>Quiz.js</title>
+    <title>The Office Quiz.js</title>
     
 </head>
 <body>
     <header>
-    <h1>Quiz.js</h1>
-    <p>Do you know JS? Find out!</p>
-    </header>
-
-    <main>
-
+      <h1>The Office Quiz.js</h1>
+      <p>Do you know The Office as well as you thought? Let's find out!</p>
       <div id="score">
-
+          Score: <span id="correct">0</span> / <span id="completed">0</span>
       </div>
-
-      <div id="statement">
-          
-      </div>
-
+      </header>
+  
+      <main>
+      <div id="statement"></div>
       <div id="options">
           <button name="true" value="true">true</button>
           <button name="false" value="false">false</button>
       </div>
-
-      <div id="explanation">
-
-      </div>
-
-      <div id="nextQuestion">
-        <button name="nextQuestion">Next Question</button>
-      </div>
-
-    </main>
-
+      <div id="explanation" class="hidden">
   
-
-  <script type="text/javascript">
-
-    const score = document.getElementById("score");
+      </div>
+      <button id="next-question" name="next-question" disabled="">Next Question</button>
+  
+      </main>
+  
     
-    const statement = document.getElementById("statement");
-    
-    const optionButtons = document.querySelectorAll("#options button");
-    
-    const explanation = document.getElementById("explanation");
-
-    const nextQuestion = document.querySelectorAll("#nextQuestion button");
-
-    const facts = [
-      {
-        statement: "Bears eat beets.",
-        answer: "false",
-        explanation: "Bears... Beets... Battlestar Galactica."
-      },
-      {
-        statement: "White bear is the best kind of bear.",
-        answer: "false",
-        explanation: "False. Black bear."
-      },
-      {
-      statement: "For Jim to recreate Dwight's costume costs only 10 dollars.",
-      answer: "false",
-      explanation: "11 dollars."
-      },
-      {
-      statement: "Jim is not asian.",
-      answer: "true",
-      explanation: "His actor friend is."
-      },
-      {
-      statement: "Is it truth that Michael singed 'So long Toby' for Toby when he went to Costa Rica?",
-      answer: "false",
-      explanation: "It was 'Good bye, Toby'"
+  
+    <script type="text/javascript">
+  
+      const facts = [
+          {
+              "statement": "Bears eat beets.",
+              "answer": "false",
+              "explanation": "Bears... Beets... Battlestar Galactica."
+          },
+          {
+              "statement": "White bear is the best kind of bear.",
+              "answer": "false",
+              "explanation": "False. Black bear."
+          },
+          {
+              "statement": "For Jim to recreate Dwight's costume costs only 10 dollars.",
+              "answer": "false",
+              "explanation": "11 dollars."
+          },
+          {
+              "statement": "Jim is not asian.",
+              "answer": "true",
+              "explanation": "His actor friend is."
+          },
+          {
+              "statement": "Is it truth that Michael singed 'So long Toby' for Toby when he went to Costa Rica?",
+              "answer": "false",
+              "explanation": "It was 'Good bye, Toby'."
+          }
+      ];
+  
+      function hide(element) {
+          element.classList.add("hidden");
       }
-    ]
-    
-    let factsIndex = 0;
-
-    let points = 0;
-        
-    const disable = (button) => {
-      button.setAttribute("disabled", "");
-    }
-
-    const enable = (button) => button.removeAttribute("disabled");
-
-    function isCorrect (guess) {
-      return guess === facts[factsIndex].answer;
-    }
-    
-    function toTheNextQuestion (factsIndex) {
-      if (factsIndex <= facts.length){
-        return factsIndex++;
-      } else {
-        return document.textContent = "No more questions!"
+  
+      function show(element) {
+          element.classList.remove("hidden");
       }
-    }
-    
-    score.textContent = "Score: " + points + "/" + factsIndex;
-
-    statement.textContent = facts[factsIndex].statement;
-    
-    for (let button of nextQuestion) {
-      button.addEventListener("click", (event) => {
-        factsIndex++;
-        console.log(factsIndex);
-      })
-    }
-
-    for (let button of optionButtons) {
-      button.addEventListener("click", (event) => {
-        
-        explanation.textContent = facts[factsIndex].explanation;
-        
-        for (let disableButton of optionButtons) {
-          disable(disableButton);
-        }
-        
-        if (isCorrect(event.target.value)) {
-          button.classList.add("correct");
-          points++;
-          console.log(points);
-        } else {
-          button.classList.add("incorrect");
-        }
-
-      })
-    }
+  
+      function disable(button) {
+          button.setAttribute("disabled", "");
+      } 
+  
+      function enable(button) {
+          button.removeAttribute("disabled");
+      }
+  
+  
+      let correct = 0;
+      let completed = 0;
       
-    
-
-  </script>
+      let fact;
+  
+  
+      const explanation =  document.getElementById("explanation");
+      const nextButton = document.getElementById("next-question");
+      const optionButtons = document.getElementById("options").children;
+  
+      function getNextFact() {
+          fact = facts.shift(); // get the first fact in our array (shortening the array)
+  
+          // set the question text to the current fact's statement
+          document.getElementById("statement").textContent = fact.statement;
+  
+          // hide any previous explanation
+          hide(explanation);
+  
+          for (let option of optionButtons) {
+              // clear any previous classes
+              option.classList.remove("correct");
+              option.classList.remove("incorrect");
+              // make sure buttons are enabled
+              enable(option);
+          }
+  
+          // disable next-question button
+          disable(nextButton);
+          
+      }
+  
+      nextButton.addEventListener("click", getNextFact);
+  
+      for (let option of optionButtons) {
+          option.addEventListener("click", e => {
+              // When this option is clicked...
+  
+              // disable all the option buttons
+              for (let button of optionButtons) {
+                  disable(button); 
+              }
+  
+              // enable the 'next question' button, if we still have facts left
+              if (facts.length > 0) {
+                  enable(nextButton);
+              } else {
+                  nextButton.textContent = "No more questions!"
+              }
+  
+              const guess = e.target.value;
+              if (guess === fact.answer) {
+                  // correct answer!
+                  e.target.classList.add("correct");
+                  correct += 1;
+              } else {
+                  // wrong answer!
+                  e.target.classList.add("incorrect");
+              }
+  
+              // display the explanation
+              explanation.textContent = fact.explanation;
+              show(explanation);
+              
+              // update the score
+              completed += 1;
+              document.getElementById("correct").textContent = correct;
+              document.getElementById("completed").textContent = completed;
+  
+          })
+      }
+  
+      getNextFact();
+  
+    </script>
 
 </body>
 </html>

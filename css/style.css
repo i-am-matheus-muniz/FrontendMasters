@@ -77,6 +77,12 @@ p {
     flex-direction: column;
 }
 
+#score {
+    padding: 1rem;
+    text-align: center;
+    color: #CCCCCC;
+}
+
 #nextQuestion {
     width: 100%;
     display: flex;
