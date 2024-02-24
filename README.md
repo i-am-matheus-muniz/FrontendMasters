@@ -10,9 +10,6 @@ Enjoy!!
 </p>
 
 <h3 align="center">Technologies used</h3>
-<ul>
-    <li></li>
-    <li>![css3-icon](images/css3-icon-2.png)</li>
-    <li>![JS-icon](images/JS-icon.png)</li>
-</ul>
-![html5-icon](https://github.com/i-am-matheus-muniz/The-Office-Quiz.js/blob/main/images/html5-icon-2.png?raw=true)
+<div align="center">
+<img src="images/html5-icon-2.png" alt="Alt text" style="width: 100px; height: auto;"><img src="images/css3-icon-2.png" alt="Alt text" style="width: 100px; height: auto;"><img src="images/js-icon.png" alt="Alt text" style="width: 100px; height: auto;">
+</div>
