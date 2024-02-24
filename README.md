@@ -10,6 +10,7 @@ Enjoy!!
 </p>
 
 <h3 align="center">Technologies used</h3>
+
 <div align="center">
 <img src="images/html5-icon-2.png" alt="Alt text" style="width: 100px; height: auto;"><img src="images/css3-icon-2.png" alt="Alt text" style="width: 100px; height: auto;"><img src="images/JS-icon.png" alt="Alt text" style="width: 100px; height: auto;">
 </div>
