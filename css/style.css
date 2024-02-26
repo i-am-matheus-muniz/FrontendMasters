@@ -54,6 +54,12 @@ p {
     padding: 2rem;
     text-align: center;
 }
+#fact-image {
+    align-items: center;
+    width: auto;
+    height: auto;
+    padding: 1rem;
+}
 
 #statement {
     border: 1px solid white;
@@ -95,4 +101,8 @@ p {
 }
 .incorrect {
     background-color: lightpink;
+}
+
+.hidden {
+    display: none;
 }

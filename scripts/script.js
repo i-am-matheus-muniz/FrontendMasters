@@ -1,25 +1,30 @@
        const facts = [
           {
+              "image": "images/bears-eat-beets.gif",
               "statement": "Bears eat beets.",
               "answer": "false",
               "explanation": "Bears... Beets... Battlestar Galactica."
           },
           {
+              "image": "images/what-kind-of-bear-is-best.gif",
               "statement": "White bear is the best kind of bear.",
               "answer": "false",
               "explanation": "False. Black bear."
           },
           {
+              "image": "images/reacreate-costume-jim.gif",
               "statement": "For Jim to recreate Dwight's costume costs only 10 dollars.",
               "answer": "false",
               "explanation": "11 dollars."
           },
           {
+              "image": "images/jim-is-not-asian.gif",
               "statement": "Jim is not asian.",
               "answer": "true",
               "explanation": "His actor friend is."
           },
           {
+              "image": "images/goodbye-toby.gif",
               "statement": "Is it truth that Michael singed 'So long Toby' for Toby when he went to Costa Rica?",
               "answer": "false",
               "explanation": "It was 'Good bye, Toby'."
@@ -47,15 +52,18 @@
       let completed = 0;
       
       let fact;
-  
-  
+      
+      const factImage = document.getElementById("fact-image");
       const explanation =  document.getElementById("explanation");
       const nextButton = document.getElementById("next-question");
       const optionButtons = document.getElementById("options").children;
  
       function getNextFact() {
           fact = facts.shift(); // get the first fact in our array (shortening the array)
-  
+
+          // set image to the question
+          factImage.src = fact.image;
+         
           // set the question text to the current fact's statement
           document.getElementById("statement").textContent = fact.statement;
   
